@@ -175,3 +175,15 @@ td{
     border: 1px solid var(--white);
     text-transform: uppercase;
 }
+.delete_product_btn,
+.update_product_btn{
+    text-align: center;
+    color: var(--red);
+    font-size: 1.7rem;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+
+.update_product_btn{
+    color: var(--color2);
+}
