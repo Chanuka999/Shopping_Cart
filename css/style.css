@@ -136,3 +136,42 @@ section{
 .submit_btn:hover{
     color: var(--color3);
 }
+.display_message{
+    background-color: var(--color2);
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.display_message span{
+    font-size: 1.5rem;
+}
+
+.display_message i {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.display_message i:hover{
+    color: var(--red);
+}
+
+.display_products table{
+    width: 100%;
+    text-align: center;
+}
+
+.display_products table thead th{
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    background-color: var(--color2);
+    color: var(--white);
+}
+
+td{
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: var(--color1);
+    border: 1px solid var(--white);
+    text-transform: uppercase;
+}
