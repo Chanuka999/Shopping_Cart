@@ -40,7 +40,7 @@
                     <td><?php echo $row['price'];  ?></td>
                     <td>
                         <a href="delete.php?delete=<?php echo $row['id']; ?>" class="delete_product_btn" onclick="return confirm('Are you sure yoa want to delete this product')"><i class="fas fa-trash"></i></a>
-                        <a href="" class="update_product_btn"><i class="fas fa-edit"></i></a>
+                        <a href="update-product.php?edit=<?php echo $row['id']; ?>" class="update_product_btn"><i class="fas fa-edit"></i></a>
                     </td>
                   </tr>
 
