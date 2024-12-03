@@ -117,7 +117,7 @@ section{
 }
 
 .submit_btn,
-.edit_btn
+.edit_btn,
 .cancel_btn{
     display: block;
     width: 50%;
@@ -132,6 +132,11 @@ section{
     margin: 0 auto;
     border:1px solid black;
 }
+
+.cancel_btn {
+    background-color: var(--red);
+    margin: 2rem auto;
+  }
 
 .submit_btn:hover{
     color: var(--color3);
@@ -197,4 +202,11 @@ img{
     padding: 2.5rem 2rem;
     font-size: 2rem;
     text-align: center;
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
