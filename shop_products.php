@@ -4,6 +4,21 @@ if(isset($_POST["add_to_cart"])){
     $product_name = $_POST["product_name"];
     $product_price =$_POST["product_price"];
     $product_image = $_POST["product_image"];
+    $product_quantity=1;
+
+    $sql3 = "SELECT * FROM cart WHERE name = '$product_name'";
+    $res3= mysqli_query($conn,$sql3);
+    if(mysqli_num_rows($res3)>0){
+        echo "already added to a cart";
+    }else{
+        $sql = "INSERT INTO cart (name,price,image,quantity) VALUES('$product_name','$product_price','$product_image',$product_quantity)";
+
+        $res = mysqli_query($conn,$sql);
+        echo "added to the cart";
+    }
+
+   
+
 }
 
 ?>
@@ -24,17 +39,35 @@ if(isset($_POST["add_to_cart"])){
         <section class="products">
             <h1 class="Lets Shop">
                 <div class="product_container">
-                    <form method="POST" action="">
+                    <?php
+                   $sql2 = "SELECT * FROM products";
+
+                   $res2 = mysqli_query($conn,$sql2);
+
+                   $count = mysqli_num_rows($res2);
+
+                   if($count>0){
+                    while($row=mysqli_fetch_assoc($res2)){
+                        ?>
+                         <form method="POST" action="">
                     <div class="edit_form">
-                        <img src="images/img3.jpg" alt="">
-                        <h3>laptop</h3>
-                        <div class="price">Price:200000</div>
-                        <input type="hidden" name="product_name">
-                        <input type="hidden" name="product_price">
-                        <input type="hidden" name="product_image">
-                        <input type="submit" class="submit_btn cart_btn" value="add to cart">
+                        <img src="images/<?php echo $row['image']; ?>" alt="">
+                        <h3><?php echo $row['name']; ?></h3>
+                        <div class="price">Price:<?php echo $row['price']; ?></div>
+                        <input type="hidden" name="product_name" value="<?php echo $row['name']; ?>">
+                        <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
+                        <input type="hidden" name="product_image"value="<?php echo $row['image']; ?>">
+                        <input type="submit" class="submit_btn cart_btn" name="add_to_cart" value="add to cart">
                     </div>
                   </form>
+                        <?php
+                    }
+
+                   }else{
+                    echo "<div class='empty_text'>No products Available</div>";
+                   }
+                    ?>
+                    
                 </div>
             </h1>
         </section>
