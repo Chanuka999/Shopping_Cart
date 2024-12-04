@@ -211,3 +211,43 @@ img{
     align-items: center;
     width: 100%;
 }
+
+.product_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 30rem);
+    gap: 2rem;
+    justify-content: center;
+}
+
+.product_container .edit_form{
+    text-align: center;
+  padding: 2rem;
+  box-shadow: var(--black);
+  border: var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  box-shadow: 2px 5px 14px #888888;
+}
+
+.product_container .edit_form img {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+.products .edit_form h3{
+    margin: 1rem 0;
+  font-size: 2rem;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.products .edit_form .price{
+    font-size: 1.7rem;
+  color: var(--color1);
+  margin: 1rem 0;
+}
+.cart_btn {
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
