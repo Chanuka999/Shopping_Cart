@@ -7,6 +7,17 @@ if(isset($_POST["submit"])){
   $update_image = $_FILES["update_image"]["name"];
   $updateImage_tmp_name= $_FILES["update_image"]["tmp_name"];
   $updateImage_folder = "images/".$update_image;
+
+  $sql2 = "UPDATE products SET name=' $update_name',price='$update_price',image='$update_image' WHERE id='$update_id'";
+
+  $res = mysqli_query($conn,$sql2);
+
+  if($res){
+    move_uploaded_file($updateImage_tmp_name,$updateImage_folder);
+   header("location: view_products.php");
+  }else{
+    $display_message = "update failed";
+  }
 }
 
 ?>
@@ -22,7 +33,14 @@ if(isset($_POST["submit"])){
 </head>
 <body>
     <?php include "header.php"; ?>
-
+    <?php
+     if(isset($display_message)){
+        echo "<div class='display_message'>
+            <span>$display_message</span>
+            <i class='fas fa-times' onclick='this.parentElement.style.display=`none`';></i>
+    </div>";
+     }
+    ?>
     <section class="edit_container">
       <?php
         
