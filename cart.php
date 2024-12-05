@@ -1,4 +1,22 @@
-<?php  include "connect.php"; ?>
+<?php  include "connect.php";
+
+if(isset($_POST["update"])){
+    $update_quantity = $_POST["update_quantity"];
+    $update_id = $_POST["update_id"];
+
+
+    $sql2 = "UPDATE cart set quantity=$update_quantity WHERE id = $update_id";
+
+    $res2 = mysqli_query($conn,$sql2);
+
+    if($res2){
+        header("location: cart.php");
+    }else{
+        echo "quantity not updated";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,10 +60,13 @@
                     </td>
                     <td><?php echo $row['price']; ?></td>
                     <td>
+                        <form action="" method="POST">
                         <div class="quantity_box">
-                            <input type="number" min="1" value="<?php echo $row['quantity']; ?>">
-                            <input type="submit" class="update_quantity" value="update">
+                            <input type="hidden" value="<?php echo $row['id']; ?>" name="update_id">
+                            <input type="number" min="1" value="<?php echo $row['quantity']; ?>" name="update_quantity">
+                            <input type="submit" class="update_quantity" value="update" name="update">
                         </div>
+                      </form>
                      </td>
                     <td>23000</td>
                     <td>
