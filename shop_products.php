@@ -9,12 +9,12 @@ if(isset($_POST["add_to_cart"])){
     $sql3 = "SELECT * FROM cart WHERE name = '$product_name'";
     $res3= mysqli_query($conn,$sql3);
     if(mysqli_num_rows($res3)>0){
-        echo "already added to a cart";
+       $display_message[] = "product already added to the cart";
     }else{
         $sql = "INSERT INTO cart (name,price,image,quantity) VALUES('$product_name','$product_price','$product_image',$product_quantity)";
 
         $res = mysqli_query($conn,$sql);
-        echo "added to the cart";
+        $display_message[] = "add to the cart";
     }
 
    
@@ -35,7 +35,19 @@ if(isset($_POST["add_to_cart"])){
 </head>
 <body>
     <?php include "header.php"; ?>
+   
+   
     <div class="container">
+    <?php
+      if(isset($display_message)){
+        foreach($display_message as $display_message){
+          echo " <div class='display_message'>
+        <span>$display_message</span>
+        <i class='fas fa-times' onclick='this.parentElement.style.display=`none`';></i>
+    </div>";
+        }
+      }
+    ?>
         <section class="products">
             <h1 class="Lets Shop">
                 <div class="product_container">
