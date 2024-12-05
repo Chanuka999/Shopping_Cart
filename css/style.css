@@ -251,3 +251,81 @@ img{
     padding: 1rem 0;
   }
   
+.shopping_cart table thead th{
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--white);
+    background-color: var(--color2);
+}
+
+.shopping_cart table{
+    text-align: center;
+    width: 100%;
+}
+
+.table_bottom{
+    background-color: var(--color1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin: 1rem 0 3rem 0;
+}
+
+.bottom_btn{
+    color: var(--black);
+    font-size: 1.3rem;
+    background-color: var(--color4);
+    padding: 1rem;
+}
+
+.bottom_btn span{
+    color:green;
+}
+
+.delete_all_btn{
+    background-color: var(--color1);
+    color: var(--white);
+    font-size: 1.3rem;
+    padding: 1.5rem;
+
+}
+.delete_all_btn .fa-trash{
+   color:var(--red);
+   margin-right: 0.5rem;
+}
+
+.quantity_box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantity_box input{
+    width: 40%;
+    padding: 0.5rem;
+}
+.update_quantity{
+    color: var(--white);
+    padding: 0.5rem;
+    background-color: var(--color1);
+    margin: 1rem 0;
+}
+
+@media (max-width:1200px){
+    .shopping_cart{
+        overflow-x: scroll;
+    }
+
+    .shopping_cart table{
+        width: 120rem;
+    }
+
+    .shopping_cart .heading{
+        text-align: left;
+    }
+
+    .shopping_cart .checkout-btn{
+        text-align: left;
+    }
+}
