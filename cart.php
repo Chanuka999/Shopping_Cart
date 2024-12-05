@@ -15,7 +15,14 @@
         <section class="shopping_cart">
             <h1 class="heading">MY Cart</h1>
             <table>
-                <thead>
+                <?php
+                $sql ="SELECT * FROM cart";
+
+                $res = mysqli_query($conn,$sql);
+                $count = mysqli_num_rows($res);
+                 $sn=1;
+                if($count>0){
+                    echo"  <thead>
                     <th>Sl No</th>
                     <th>Product Name</th>
                     <th>product Image</th>
@@ -24,17 +31,19 @@
                     <th>Total price</th>
                     <th>Action</th>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>laptop</td>
+                <tbody>";
+                 while($row=mysqli_fetch_assoc($res)){
+                    ?>
+                      <tr>
+                    <td><?php echo $sn;?></td>
+                    <td><?php echo $row['name']; ?></td>
                     <td>
-                        <img src="images/images.jpg" alt="/">
+                        <img src="images/<?php echo $row['image']; ?>" alt="/">
                     </td>
-                    <td>23000</td>
+                    <td><?php echo $row['price']; ?></td>
                     <td>
                         <div class="quantity_box">
-                            <input type="number" min="1">
+                            <input type="number" min="1" value="<?php echo $row['quantity']; ?>">
                             <input type="submit" class="update_quantity" value="update">
                         </div>
                      </td>
@@ -45,6 +54,17 @@
                         </a>
                     </td>
                   </tr>
+                    <?php
+                    $sn++;
+                 }
+
+                }else{
+                    echo "no products";
+                }
+                
+                ?>
+              
+                 
                 </tbody>
            </table>
            <div class="table_bottom">
