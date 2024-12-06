@@ -1,6 +1,7 @@
 <?php  include "connect.php";
 
 if(isset($_POST["update"])){
+    
     $update_quantity = $_POST["update_quantity"];
     $update_id = $_POST["update_id"];
 
@@ -61,14 +62,15 @@ if(isset($_POST["update"])){
                     <td><?php echo $row['price']; ?></td>
                     <td>
                         <form action="" method="POST">
+                        <input type="hidden" value="<?php echo $row['id']; ?>" name="update_id"> 
                         <div class="quantity_box">
-                            <input type="hidden" value="<?php echo $row['id']; ?>" name="update_id">
+                          
                             <input type="number" min="1" value="<?php echo $row['quantity']; ?>" name="update_quantity">
                             <input type="submit" class="update_quantity" value="update" name="update">
                         </div>
                       </form>
                      </td>
-                    <td>23000</td>
+                    <td><?php echo $total= number_format($row['price'] * $row['quantity'] )?></td>
                     <td>
                         <a href="">
                             <i class="fas fa-trash"></i>Remove
