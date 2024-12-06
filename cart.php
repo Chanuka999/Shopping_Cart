@@ -25,6 +25,11 @@ if(isset($_GET["remove"])){
 
     $res3=mysqli_query($conn,$sql3);
 }
+
+if(isset($_GET["delete_all"])){
+    $sql4 = "DELETE FROM cart";
+    $res4 = mysqli_query($conn,$sql4);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +115,7 @@ if(isset($_GET["remove"])){
            ?>
           
 
-           <a href="" class="delete_all_btn">
+           <a href="cart.php?delete_all" onclick="return confirm('Are you sure want to delete items')" class="delete_all_btn">
             <i class="fas fa-trash"></i>Delete All
            </a>
            <?php
