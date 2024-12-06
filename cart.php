@@ -17,6 +17,14 @@ if(isset($_POST["update"])){
     }
 }
 
+
+if(isset($_GET["remove"])){
+    $remove  = $_GET["remove"];
+
+    $sql3="DELETE FROM cart WHERE id=$remove";
+
+    $res3=mysqli_query($conn,$sql3);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +48,7 @@ if(isset($_POST["update"])){
                 $res = mysqli_query($conn,$sql);
                 $count = mysqli_num_rows($res);
                  $sn=1;
+                 $grand_total=0;
                 if($count>0){
                     echo"  <thead>
                     <th>Sl No</th>
@@ -72,17 +81,18 @@ if(isset($_POST["update"])){
                      </td>
                     <td><?php echo $total= number_format($row['price'] * $row['quantity'] )?></td>
                     <td>
-                        <a href="">
+                        <a href="cart.php?remove=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure want to delete item')">
                             <i class="fas fa-trash"></i>Remove
                         </a>
                     </td>
                   </tr>
                     <?php
                     $sn++;
+                    $grand_total += ($row['price'] * $row['quantity']);
                  }
 
                 }else{
-                    echo "no products";
+                    echo "<div class='empty_text'>Cart is empty</div>";
                 }
                 
                 ?>
@@ -90,15 +100,27 @@ if(isset($_POST["update"])){
                  
                 </tbody>
            </table>
-           <div class="table_bottom">
-            <a href="hop_products.php" class="bottom_btn">Continue Shoppng</a>
-            <h3 class="bottom_btn">Grand total:<span>25000/-</span></h3>
-            <a href="checkout.php" class="bottom_btn">Procced to checkout></a>
-           </div>
+           <?php
+           if($grand_total>0){
+            echo" <div class='table_bottom'>
+            <a href='shop_products.php' class='bottom_btn'>Continue Shoppng</a>
+            <h3 class='bottom_btn'>Grand total:<span>$grand_total/-</span></h3>
+            <a href='checkout.php' class='bottom_btn'>Procced to checkout></a>
+           </div>";
+           ?>
+          
 
            <a href="" class="delete_all_btn">
             <i class="fas fa-trash"></i>Delete All
            </a>
+           <?php
+           }else{
+            echo " ";
+           }
+
+           ?>
+
+           
         </section>
     </div>
 </body>
